@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Button from "../../common/Button";
 import { login } from "../serviceAuth";
 import FormField from '../../common/FormField';
@@ -7,6 +7,7 @@ import AuthContext from "../context";
 
 
 function LoginPage(){
+    const ref = useRef(null);
     // Uso los customs Hooks de React Router
     
     const {handleLogin: onLogin} = useContext(AuthContext)
@@ -66,6 +67,12 @@ function LoginPage(){
             // setIsloading(false);
         }
     };
+
+
+    useEffect(()=>{
+        ref.current.focus();
+    },[])
+    console.log(this);
     return(
         <div className="loginPage">
             <h1 className="loginPage-title">Log in to Twitter</h1>
@@ -77,6 +84,7 @@ function LoginPage(){
                 className="loginForm-field"
                 value={username}
                 onChange={handleInputChange}
+                ref={ref}
             />
             <FormField
                 type="password"

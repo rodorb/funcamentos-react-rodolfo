@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { AuthContextConsumer } from "./context";
+import T from 'prop-types';
 
 const RequireAuth = ({isLogged, children})=>{
     const location = useLocation();
@@ -10,6 +11,11 @@ const RequireAuth = ({isLogged, children})=>{
 
     return children;
     
+}
+
+RequireAuth.propTypes = {
+  isLogged: T.bool,
+  childre: T.node,
 }
 
 
